@@ -1,0 +1,172 @@
+/* THE MAGIC FIX FOR ALIGNMENT AND OVERFLOW */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --bg-color: #f5f5f7;
+  --card-bg: #ffffff;
+  --glass-bg: rgba(255, 255, 255, 0.85);
+  --text-primary: #1d1d1f;
+  --text-secondary: #86868b;
+  --accent-color: #007aff;
+  --input-bg: #f2f2f7;
+}
+
+[data-theme="dark"] {
+  --bg-color: #050505;
+  --card-bg: #1c1c1e;
+  --glass-bg: rgba(28, 28, 30, 0.85);
+  --text-primary: #f5f5f7;
+  --text-secondary: #a1a1a6;
+  --input-bg: #2c2c2e;
+}
+
+body {
+  overflow: hidden;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+}
+
+.app-wrapper {
+  background: var(--bg-color);
+  position: relative;
+  height: 100dvh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: -apple-system, sans-serif;
+  padding: 20px;
+}
+
+/* Floating background circles */
+.app-wrapper::before {
+  content: "";
+  position: absolute;
+  width: 200%; height: 200%;
+  background: radial-gradient(circle at 50% 50%, var(--accent-color) 0%, transparent 20%);
+  opacity: 0.12;
+  filter: blur(80px);
+  animation: float 10s infinite alternate;
+  z-index: 0;
+}
+
+@keyframes float {
+  from { transform: translate(-5%, -5%); }
+  to { transform: translate(5%, 5%); }
+}
+
+/* LANDING CARD (Solid, Clean) */
+.landing-card {
+  z-index: 1;
+  background: var(--card-bg);
+  width: 100%;
+  max-width: 420px;
+  padding: 40px 30px;
+  border-radius: 28px;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+  text-align: center;
+  position: relative;
+}
+
+/* BATTLE CARD (Glassmorphism) */
+.game-card {
+  z-index: 1;
+  background: var(--glass-bg);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  width: 100%;
+  max-width: 420px;
+  padding: 40px 30px;
+  border-radius: 28px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 30px 60px rgba(0,0,0,0.2);
+  text-align: center;
+  position: relative;
+}
+
+/* THEME TOGGLE (Fixed to be a perfect circle icon) */
+.theme-toggle {
+  position: absolute;
+  top: 20px; 
+  right: 20px; 
+  width: 36px; 
+  height: 36px;
+  border-radius: 50%;
+  border: 1px solid var(--input-bg);
+  background: transparent;
+  color: var(--text-primary);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1rem;
+  cursor: pointer;
+  z-index: 10;
+  padding: 0;
+}
+
+.theme-toggle:hover { background: var(--input-bg); }
+
+/* CATEGORY PILLS */
+.category-list {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  margin-bottom: 25px;
+  flex-wrap: wrap;
+}
+
+.category-pill {
+  padding: 8px 14px;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  cursor: pointer;
+  background: var(--input-bg);
+  color: var(--text-secondary);
+  transition: all 0.2s;
+}
+
+.category-pill.active {
+  background: var(--accent-color);
+  color: white;
+}
+
+/* INPUTS & BUTTONS */
+input {
+  width: 100%;
+  padding: 16px;
+  border-radius: 14px;
+  border: 2px solid transparent;
+  background: var(--input-bg);
+  color: var(--text-primary);
+  font-size: 16px;
+  margin-bottom: 15px;
+  outline: none;
+  text-align: center;
+}
+
+input:focus { border-color: var(--accent-color); }
+
+button.action-btn {
+  width: 100%;
+  padding: 16px;
+  border-radius: 14px;
+  border: none;
+  background: var(--accent-color);
+  color: white;
+  font-weight: 700;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+button.action-btn:active { transform: scale(0.96); }
+
+/* HP BAR */
+.hp-track { background: var(--input-bg); height: 8px; border-radius: 10px; margin: 20px 0; overflow: hidden; }
+.hp-fill { height: 100%; background: linear-gradient(90deg, #007aff, #00ff88); transition: width 0.4s ease; }
