@@ -3,7 +3,7 @@ import io from 'socket.io-client';
 import './App.css';
 
 const BACKEND_URL = import.meta.env.VITE_BACKEND_URL || "http://localhost:3001";
-const socket = io.connect(BACKEND_URL);
+const socket = io.connect("https://quantclash-backend.onrender.com");
 
 function App() {
   const [view, setView] = useState("landing");
