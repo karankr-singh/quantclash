@@ -50,7 +50,8 @@ quantclash/
 
 Roadmap & Future Improvements
 
-**MongoDB Integration:** Global leaderboard and user win-streaks.
-**Timer System:** 10-second countdown for increased pressure.
-**Sound Effects:** Audio feedback for hits and victories.
-**Global Matchmaking:** Play against random users online.
+[]**MongoDB Integration:** Global leaderboard and user win-streaks.
+[]**Timer System:** 10-second countdown for increased pressure.
+[]**Sound Effects:** Audio feedback for hits and victories.
+[]**Global Matchmaking:** Play against random users online.
+
